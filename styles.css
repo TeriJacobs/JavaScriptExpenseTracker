@@ -1,0 +1,96 @@
+/* Account Summary */
+/* .account-summary {
+  border: solid 1px black;
+  background-color: beige;
+} */
+.main{
+  opacity: 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.bg-indigo {
+  background-color: #6610f2;
+}
+.bg-red {
+  background-color: #dc3545;
+}
+.bg-green {
+  background-color: #35b653;
+}
+.me-3 {
+  margin-right: 1rem !important;
+}
+.card-widget {
+  padding: 1.5rem;
+  border-radius: 50rem;
+  background: #fff;
+  -webkit-box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  justify-content: space-between;
+}
+.card-widget-body {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+}
+.card-header {
+  position: relative;
+  padding: 2rem;
+  border-bottom: none;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+  z-index: 2;
+}
+.card-heading {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 2rem;
+}
+
+/* Listed Transactions on Account */
+.container-movements {
+  overflow: auto;
+}
+/* Deposits and Withdrawals */
+.movements {
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  height: 22.3rem;
+}
+
+/* Operations of money movemenets */
+.operations-display {
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  /* padding: 1.5rem; */
+  background: #fff;
+  -webkit-box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  justify-content: space-between;
+}
