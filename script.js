@@ -190,39 +190,36 @@ submitIncomeBtn.addEventListener('click', function(event){
     const amount = Number(inputAmountIncome.value);
     const categoryType = 'income'
 
-    // console.log(date);
-    // console.log(amount);
-
-    if( amount > 0 && currentAccount.balance >= amount)
+    if(amount > 0 && currentAccount.balance >= amount)
     {
         currentAccount.movements.push(amount);
         currentAccount.categoryType.push(categoryType);
         currentAccount.date.push(date);
         // updateUI(teri.movements);
         updateUI(currentAccount);
-        // amount = ' ';
-        //console.log(accounts);
     }
-    // else {
-    //     console.log('Transfer Invalid');
-    // }
+
+    if(amount == 0 || amount <= -1){
+        alert('Enter a number greater than 0');
+    }
+
 });
 
 submitExpenseBtn.addEventListener('click', function(event){
     event.preventDefault();
     const date = inputDateExpense.value;
     const amount = Number(inputAmountExpense.value);
-   // const categoryType = inputTypeExpense.value;
-    const categoryType = 'inputTypeExpense.value;'
+    const categoryType = inputTypeExpense.value;
 
     if(amount > 0 && currentAccount.balance >= amount)
     {
         currentAccount.movements.push(-amount);
         currentAccount.categoryType.push(categoryType);
         currentAccount.date.push(date);
-        // updateUI(teri.movements);
         updateUI(currentAccount);
-        // amount = ' ';
-        //console.log(accounts);
+    }
+
+    if(currentAccount.balance < amount){
+        alert('Amount cannot exceed balance');
     }
 })
