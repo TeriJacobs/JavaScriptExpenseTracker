@@ -14,8 +14,7 @@ const teri = {
         "2020-04-01T10:17:24.185Z",
         "2020-05-08T14:11:59.604Z",
         "2022-03-29T17:01:17.194Z",
-        "2022-04-04T23:36:17.929Z",
-        "2022-04-05T10:51:36.790Z",
+        "2022-04-04T23:36:17.929Z"
     ],
     pin: 111,
 }
@@ -65,8 +64,9 @@ const formatMovementDate = function(date){
     if(daysPassed <= 7) return `${daysPassed} days ago`;
     else {
         const day = `${date.getDate()}`.padStart(2,0);
-        const month = `${date.getMonth()}`.padStart(2,0);
+        const month = `${date.getMonth() + 1}`.padStart(2,0);
         const year = `${date.getFullYear()}`.padStart(2,0);
+        // const hour = now.getHours();
         return `${day}/${month}/${year}`;
     }
 
@@ -162,8 +162,17 @@ inputLoginBtn.addEventListener('click', function(event){
     currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
     console.log(currentAccount);
     if(currentAccount?.pin === Number(inputLoginPin.value)){
+        let myDate = new Date();
+        let hrs = myDate.getHours();
+        let greet;
+            if (hrs < 12)
+            greet = 'Good Morning';
+            else if (hrs >= 12 && hrs <= 17)
+            greet = 'Good Afternoon';
+            else if (hrs >= 17 && hrs <= 24)
+            greet = 'Good Evening';
         //display ui and welcome message
-        welcomeMessage.textContent = `Welcome back ${currentAccount.owner.split(' ')[0]}`;
+        welcomeMessage.textContent = `${greet}, Welcome back ${currentAccount.owner.charAt(0).toUpperCase()+ currentAccount.owner.slice(1).split(' ')[0]}.`;
         displayContainerApp.style.opacity = 100;
 
         //have the logins loose focus on revealing data on screen
@@ -184,6 +193,7 @@ inputLoginBtn.addEventListener('click', function(event){
 });
 
 // transfering money logic
+// tracking income earned
 submitIncomeBtn.addEventListener('click', function(event){
     event.preventDefault();
     const date = inputDateIncome.value;
@@ -199,12 +209,16 @@ submitIncomeBtn.addEventListener('click', function(event){
         updateUI(currentAccount);
     }
 
-    if(amount == 0 || amount <= -1){
-        alert('Enter a number greater than 0');
+    try{
+        if(amount == 0 || amount <= -1 || isNaN(amount)) throw "feild empty Enter a number greater than 0";
+        if(date === undefined || isNaN(date)) throw "Please enter a passed or current date";
+    } catch(err){
+        alert("Display" + err)
     }
 
 });
 
+// tracking expenditure
 submitExpenseBtn.addEventListener('click', function(event){
     event.preventDefault();
     const date = inputDateExpense.value;
@@ -221,5 +235,24 @@ submitExpenseBtn.addEventListener('click', function(event){
 
     if(currentAccount.balance < amount){
         alert('Amount cannot exceed balance');
+    } else if(amount <= 0){
+        alert('Amount needs to be greater than 0');
     }
+
+    // potential errors on user inputs
+    if(amount == 0 || amount <= -1 || isNaN(amount) ){
+        alert('feild empty Enter a number greater than 0');
+        return false
+    }
+
+    if(date === ""){
+        alert('Please enter a passed or current date');
+        return false
+    }
+
+    if(categoryType === "" || categoryType === "---please Select---"){
+        alert('Please select a category');
+        return false
+    }
+    
 })
