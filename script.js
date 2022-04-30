@@ -23,6 +23,7 @@ const accounts = [teri];
 
 /////////////////// Elements ///////////////////
 const welcomeMessage = document.querySelector('.welcome-message');
+const loginFormDisplay = document.querySelector('.login-form');
 const inputLoginUsername = document.querySelector('.input-login-username');
 const inputLoginPin = document.querySelector('.input-login-pin');
 const inputLoginBtn = document.querySelector('.input-login-btn');
@@ -43,6 +44,10 @@ const submitExpenseBtn = document.querySelector('.submit-expense');
 const inputDateExpense = document.querySelector('.input-date-expense');
 const inputTypeExpense = document.querySelector('.input-type-expense');
 const inputAmountExpense = document.querySelector('.input-amount-expense');
+
+const submitDeleteBtn = document.querySelector('.submit-delete-account');
+const inputAccountUsername = document.querySelector('.input-account-username');
+const inputAccountPassword = document.querySelector('.input-account-password');
 
 /////////////////// Functions ///////////////////
 const greeting = function(){
@@ -256,3 +261,31 @@ submitExpenseBtn.addEventListener('click', function(event){
     }
     
 })
+
+// delete user account
+submitDeleteBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+  
+    if (
+        inputAccountUsername.value === currentAccount.username &&
+      Number(inputAccountPassword.value) === currentAccount.pin
+    ) {
+        // if index found is -1, then the item does not exsist.
+      const itemToDelete = accounts.findIndex(
+        acc => acc.username === currentAccount.username
+      );
+      // Delete account
+      accounts.splice(itemToDelete, 1);
+      // Hide UI
+      displayContainerApp.style.opacity = 0;
+      loginFormDisplay.style.opacity = 0;
+      //alert("The user account has successfully been deleted.")
+      successDeleteMessage = welcomeMessage;
+      successDeleteMessage.textContent = "The user account has been successfully been deleted."
+      successDeleteMessage.style.color = "green";
+    } else {
+        alert("The username/password combination is incorrect, your account cannot be deleted.")
+    }
+  
+    inputAccountUsername.value = inputAccountPassword.value = '';
+  });
