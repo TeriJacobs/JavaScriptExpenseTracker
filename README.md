@@ -1,4 +1,4 @@
-### JavaScriptExpenseTracker
+## JavaScriptExpenseTracker
 
 While learning The Complete JavaScript Course 2022: From Zero to Expert, I thought it would only be fitting to build out my own version of the activities to implement what I have leant, and plcae it into a project that can be tracked and stored on Github.
 
@@ -25,6 +25,6 @@ To View the site:
 
 
 
-# This application is built to showcase my understanding of pure javascript functionality, with ability to focus on design (using bootsrap) and planning (using github projects and figma).
+#### This application is built to showcase my understanding of pure javascript functionality, with ability to focus on design (using bootsrap) and planning (using github projects and figma).
 
 
