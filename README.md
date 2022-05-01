@@ -20,8 +20,9 @@ The functionality consists of:
 5. ability to delete acccount.
 
 
-To track my pr checkout:
-To View the site: 
+To track my scrumboard and pr updates: https://github.com/TeriJacobs/JavaScriptExpenseTracker/projects/1
+
+To View the site: https://terijacobs.github.io/JavaScriptExpenseTracker/
 
 
 
