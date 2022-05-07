@@ -30,7 +30,7 @@ To view the site, you can follow this <a href="https://terijacobs.github.io/Java
 
 <ins>How to login:</ins>
 <p>
-You may use the following credentials to login<br>
+While implementing the functionality for multiple user logins, you may use the following credentials to login and navigate the site.<br>
 username: tj<br>
 password: 111
 </p>
