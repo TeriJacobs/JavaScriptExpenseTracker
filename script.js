@@ -201,25 +201,51 @@ inputLoginBtn.addEventListener('click', function(event){
 // tracking income earned
 submitIncomeBtn.addEventListener('click', function(event){
     event.preventDefault();
-    const date = inputDateIncome.value;
+    //const date = Date.parse(inputDateIncome.value);
+    const date = inputDateIncome;
     const amount = Number(inputAmountIncome.value);
     const categoryType = 'income'
 
-    if(amount > 0 && currentAccount.balance >= amount)
+    // function dateIsValid(dateInput) {
+    //     return dateInput instanceof Date && isNaN(dateInput);
+    //   }
+    const isDate = (date) => {
+        return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
+      }
+
+
+    //  if(amount > 0 && currentAccount.balance >= amount && dateIsValid(date))
+    if(amount > 0 && currentAccount.balance >= amount && isDate(date.value) === true)
     {
         currentAccount.movements.push(amount);
         currentAccount.categoryType.push(categoryType);
-        currentAccount.date.push(date);
+        currentAccount.date.push(date.value);
         // updateUI(teri.movements);
         updateUI(currentAccount);
+    } else if (isDate(date.value) === false){
+        alert("Please select a date");
+        console.log(date)
+        console.log(typeof(date.value))
+    } else if(amount >=0 ){
+        alert("Please enter a value greater than 0");
     }
 
-    try{
-        if(amount == 0 || amount <= -1 || isNaN(amount)) throw "feild empty Enter a number greater than 0";
-        if(date === undefined || isNaN(date)) throw "Please enter a passed or current date";
-    } catch(err){
-        alert("Display" + err)
-    }
+    // if(Date.parse(date))
+    // { 
+    //     console.log("True")
+    // } else 
+    // {   
+    //     console.log("error"); alert("errorrrr")
+    // }
+    // console.log(Date.parse(date) === isNaN(date))
+
+    // try{
+    //     if(amount == 0 || amount <= -1 || isNaN(amount)) throw "feild empty Enter a number greater than 0";
+    //     //if(date === undefined || isNaN(date)) throw "Please enter a passed or current date";
+    //     //if(Date.parse(date) === NaN) throw "Please enter a passed or current date";
+    // } catch(err){
+    //     alert(err)
+    // }
 
 });
 
