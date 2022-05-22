@@ -36,10 +36,12 @@ const transactionBalance = document.querySelector('.transaction-balance')
 const transactionIncome = document.querySelector('.transaction-income')
 const transactionExpenses = document.querySelector('.transaction-expenses')
 
+const formDeposits = document.getElementById('form-deposits');
 const inputDateIncome = document.querySelector('.input-date-income');
 const inputAmountIncome = document.querySelector('.input-amount-income');
 const submitIncomeBtn = document.querySelector('.submit-income');
 
+const formExpenses = document.getElementById('form-expenses');
 const submitExpenseBtn = document.querySelector('.submit-expense');
 const inputDateExpense = document.querySelector('.input-date-expense');
 const inputTypeExpense = document.querySelector('.input-type-expense');
@@ -211,15 +213,19 @@ submitIncomeBtn.addEventListener('click', function(event){
         currentAccount.categoryType.push(categoryType);
         currentAccount.date.push(date);
         // updateUI(teri.movements);
-        updateUI(currentAccount);
+        //updateUI(currentAccount);
+    } else if ((amount == 0 || amount <= -1 || isNaN(amount)) && (date === undefined || isNaN(date))){
+        alert('feild empty Select a date and enter a number greater than 0');
+        return false;
     }
 
-    try{
-        if(amount == 0 || amount <= -1 || isNaN(amount)) throw "feild empty Enter a number greater than 0";
-        if(date === undefined || isNaN(date)) throw "Please enter a passed or current date";
-    } catch(err){
-        alert("Display" + err)
+    if(date === ""){
+        alert('Please enter a passed or current date');
+        return false
     }
+
+    updateUI(currentAccount);
+    formDeposits.reset();
 
 });
 
@@ -235,9 +241,9 @@ submitExpenseBtn.addEventListener('click', function(event){
         currentAccount.movements.push(-amount);
         currentAccount.categoryType.push(categoryType);
         currentAccount.date.push(date);
-        updateUI(currentAccount);
-    }
-
+        //updateUI(currentAccount);
+    } 
+    
     if(currentAccount.balance < amount){
         alert('Amount cannot exceed balance');
     } else if(amount <= 0){
@@ -259,6 +265,9 @@ submitExpenseBtn.addEventListener('click', function(event){
         alert('Please select a category');
         return false
     }
+
+    updateUI(currentAccount);
+    formExpenses.reset();
     
 })
 
