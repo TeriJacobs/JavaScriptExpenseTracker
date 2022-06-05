@@ -6,7 +6,9 @@
 .main{
   opacity: 0;
 }
-
+.input-logout-btn{
+  opacity: 0;
+}
 .dot {
   width: 10px;
   height: 10px;
