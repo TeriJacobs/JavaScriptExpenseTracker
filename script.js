@@ -18,8 +18,23 @@ const teri = {
     ],
     pin: 111,
 }
+const guest = {
+    owner: 'guest account',
+    movements: [600, 9000, -4000, 6000, -200, -50, -600],
+    categoryType: [ 'income', 'income', 'rent', 'income', 'clothing', 'clothing', 'petrol'],
+    date: [
+        "2019-11-18T21:31:17.178Z",
+        "2019-12-23T07:42:02.383Z",
+        "2020-01-28T09:15:04.904Z",
+        "2020-04-01T10:17:24.185Z",
+        "2020-05-08T14:11:59.604Z",
+        "2022-03-29T17:01:17.194Z",
+        "2022-04-04T23:36:17.929Z"
+    ],
+    pin: 222,
+}
 
-const accounts = [teri];
+const accounts = [teri, guest];
 
 /////////////////// Elements ///////////////////
 const welcomeMessage = document.querySelector('.welcome-message');
@@ -27,6 +42,7 @@ const loginFormDisplay = document.querySelector('.login-form');
 const inputLoginUsername = document.querySelector('.input-login-username');
 const inputLoginPin = document.querySelector('.input-login-pin');
 const inputLoginBtn = document.querySelector('.input-login-btn');
+const inputLogoutBtn = document.querySelector('.input-logout-btn');
 
 const displayContainerApp = document.querySelector('.main');
 
@@ -160,7 +176,7 @@ let currentAccount; // for use on the login
 //fake account login
 currentAccount = teri;
 updateUI(currentAccount);
-displayContainerApp.style.opacity = 100;
+displayContainerApp.style.opacity = 0;
 
 //LOGIN btn
 inputLoginBtn.addEventListener('click', function(event){
@@ -185,19 +201,28 @@ inputLoginBtn.addEventListener('click', function(event){
         //have the logins loose focus on revealing data on screen
         inputLoginUsername.value = inputLoginPin.value = '';
         inputLoginPin.blur();
+
+        inputLoginBtn.style.display = 'none';
         
-        // //display and calculate the transactions via a call to funtion
-        // transactions(currentAccount.movements, currentAccount.categoryType);
-
-        // // display and call funct on balance
-        // displayBalance(currentAccount.movements);
-
-        // //display summary
-        // displayExpense(currentAccount.movements);
-        // displayIncome(currentAccount.movements);
+        if(inputLoginBtn.style.display = 'none'){
+            inputLoginUsername.style.display = 'none';
+            inputLoginPin.style.display = 'none';
+            inputLogoutBtn.style.opacity = 100;
+            //alert('show')
+        }
         updateUI(currentAccount);
     }
 });
+//LOGOUT BUTTON AS TOGGLE
+inputLogoutBtn.addEventListener('click', function(event){
+    event.preventDefault();
+
+    displayContainerApp.style.opacity = 0;
+    inputLogoutBtn.style.display = 'none';
+    welcomeMessage.textContent = 'You have successfully logged out!'
+
+
+})
 
 // transfering money logic
 // tracking income earned
