@@ -12,21 +12,21 @@
     </head>
     <body>
         <div class="container">
-            <section class="header">
+            <section class="header login-header-details">
                 <div class="row mt-5">
-                    <div class="col-7">
+                    <div class="col-lg-5 col-md-12 col-sm-12 login-header-title">
                         <h4 class="welcome-message">Welcome to your Expense Tracker</h4>
                     </div>
-                    <div class="col-5">
+                    <div class="col-lg-7 col-md-12 col-sm-12">
                         <form class="login-form">
                             <div class="row input-group input-group-sm ">
-                                <div class="col">
+                                <div class="col-lg-4 col-md-12 col-sm-12 my-1">
                                     <input type="text" class="form-control input-login-username" placeholder="username">
                                 </div>
-                                <div class="col">
+                                <div class="col-lg-4 col-md-12 col-sm-12 my-1">
                                     <input type="password" class="form-control input-login-pin" placeholder="password">
                                 </div>
-                                <div class="col">
+                                <div class="col-lg-4 col-md-12 col-sm-12 my-1">
                                     <button type="button" class="btn btn-outline-dark input-login-btn">Login</button>
                                     <button type="button" class="btn btn-outline-dark input-logout-btn">Logout</button>
                                 </div>
@@ -37,7 +37,7 @@
             </section>
             <section class="main">
                 <div class="row mt-5 justify-content-md-center">
-                    <div class="mb-4 col account-summary">
+                    <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
                         <div class="card-widget">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-indigo"></div>
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-4 col account-summary">
+                    <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
                         <div class="card-widget">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-red"></div>
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-4 col account-summary">
+                    <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
                         <div class="card-widget">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-green"></div>
@@ -98,13 +98,13 @@
                                     <div class="row">
                                         <form id="form-deposits">
                                             <div class="form-row align-items-center input-group input-group-sm">
-                                                <div class="col-4">
+                                                <div class="col">
                                                     <input type="date" class=" form-control input-date-income" placeholder="Date" aria-required="true">
                                                 </div>
-                                                <div class="col-4 mx-2">
+                                                <div class="col mx-2">
                                                     <input type="amount" class=" form-control input-amount-income" placeholder="R400" aria-required="true">
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col">
                                                     <button type="button" class="btn btn-outline-dark submit-income" style="width:100%">Submit</button>
                                                 </div>
                                             </div>
@@ -121,13 +121,8 @@
                                     </div>
                                     <div class="form-row align-items-center input-group input-group-sm">
                                         <form id="form-expenses" class="input-group input-group-sm">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <input type="date" class="form-control input-date-expense" placeholder="Date" required="true">
-                                                </div>
-                                            </div>
-                                            <div class="form-row align-items-center input-group input-group-sm mt-2">
-                                                <div class="col-5">
+                                            <div class="form-row">
+                                                <div class="mb-1">
                                                     <select class="form-control input-type-expense" required="true">
                                                         <option value="" disabled selected hidden>-Please Select-</option>
                                                         <option>Food</option>
@@ -136,14 +131,18 @@
                                                         <option>Rent</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                            <div class="form-row align-items-center input-group input-group-sm">
+                                                <div class="col">
+                                                    <input type="date" class=" form-control input-date-expense" placeholder="Date" required="true">
+                                                </div>
                                                 <div class="col mx-2">
-                                                    <input type="amount"  class="form-control input-amount-expense"placeholder="R400" required="true">
+                                                    <input type="amount" class=" form-control input-amount-expense" placeholder="R400" required="true">
                                                 </div>
                                                 <div class="col">
-                                                    <button type="button" class="btn btn-outline-dark submit-expense">Submit</button>
+                                                    <button type="button" class="btn btn-outline-dark submit-income" style="width:100%">Submit</button>
                                                 </div>
-                                            </div>
-                                            
+                                            </div>                                            
                                         </form>
                                     </div>
                                 </div>
@@ -159,13 +158,13 @@
                                 <div class="row">
                                     <form>
                                         <div class="form-row align-items-center input-group input-group-sm">
-                                            <div class="col-4 mx2">
+                                            <div class="col">
                                                 <input type="text" class=" form-control input-account-username" placeholder="username">
                                             </div>
-                                            <div class="col-4 mx-2">
+                                            <div class="col mx-2">
                                                 <input type="password" class=" form-control input-account-password" placeholder="password">
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col">
                                                 <button type="button" class="btn btn-outline-dark submit-delete-account" style="width:100%">Submit</button>
                                             </div>
                                         </div>

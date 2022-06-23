@@ -96,3 +96,23 @@
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
   justify-content: space-between;
 }
+.input-type-expense{
+  width:210px !important;
+}
+
+
+@media (min-width: 300px) and (max-width: 984px) { 
+  .login-header-details{
+    text-align: center;
+    margin: 5rem
+  }
+  .login-header-title{
+    margin-bottom: 1rem;
+  }
+  .input-login-btn{
+    width: inherit;
+  }
+  .input-logout-btn {
+    display: list-item;
+  }
+ }
