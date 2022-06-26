@@ -13,12 +13,22 @@
     <body>
         <div class="container">
             <section class="header login-header-details">
-                <div class="row mt-5">
-                    <div class="col-lg-5 col-md-12 col-sm-12 login-header-title">
-                        <h4 class="welcome-message">Welcome to your Expense Tracker</h4>
+                <div class="row  mt-5">
+                    <form class="login-form">
+                        <div class="row input-group input-group-sm">
+                            <!-- <div class="col-md-4 offset-md-10 col-auto ms-auto logout-btn-wrapper"> -->
+                            <div class="col-auto ms-auto">
+                                <button type="button" class="btn btn-outline-dark input-logout-btn">Logout</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 col-md-12 col-sm-6 login-header-title pt-1 login-form-display">
+                        <h4 class="welcome-message" style="margin-left:0">Welcome to your Expense Tracker</h4>
                     </div>
                     <div class="col-lg-7 col-md-12 col-sm-12">
-                        <form class="login-form">
+                        <form class="login-form login-form-display">
                             <div class="row input-group input-group-sm ">
                                 <div class="col-lg-4 col-md-12 col-sm-12 my-1">
                                     <input type="text" class="form-control input-login-username" placeholder="username">
@@ -28,7 +38,6 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12 my-1">
                                     <button type="button" class="btn btn-outline-dark input-login-btn">Login</button>
-                                    <button type="button" class="btn btn-outline-dark input-logout-btn">Logout</button>
                                 </div>
                             </div>
                         </form>
@@ -38,55 +47,64 @@
             <section class="main">
                 <div class="row mt-5 justify-content-md-center">
                     <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
-                        <div class="card-widget">
+                        <div class="card-widget card-widget-income">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-indigo"></div>
                                 <div class="text">
                                     Income received: <span class="transaction-income"></span>
                                 </div>  
-                                <div class="d-flex justify-content-end"><i class="bi bi-wallet"></i></div>
+                                <div class="col-auto ms-auto"><i class="bi bi-wallet"></i></div>
                             </div>
                         </div>
                     </div>
                     <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
-                        <div class="card-widget">
+                        <div class="card-widget card-widget-expenses">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-red"></div>
                                 <div class="text">
                                     Expenses: <span class="transaction-expenses"></span>
                                 </div>
+                                <div class="col-auto ms-auto"><i class="bi bi-cash-coin"></i></div>
                             </div>
                         </div>
                     </div>
                     <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
-                        <div class="card-widget">
+                        <div class="card-widget card-widget-balance">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-green"></div>
                                 <div class="text">
                                     Balance: <span class="transaction-balance"></span>
                                 </div>
+                                <div class="col-auto ms-auto"><strong><i class="bi bi-wallet2"></i></strong></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-5 justify-content-md-center">
                     <div class="col-lg-7 mb-4 mb-lg-0 transaction-view">
-                        <div class="container movements container-movements card-widget">
-                            <div class="card-widget-body h-100">
-                                <div class="row">
-                                        <div class="col movements-type movements-type--deposit">2 deposit</div>
-                                        <div class="col movements-date">3 days ago</div>
-                                        <div class="col movements-category">Food</div>
-                                        <div class="col movements-value">R4 000</div>
-                                </div>
-                                <div class="row">
-                                        <div class="col movements-type movements-type--withdrawal">1 withdrawal</div>
-                                        <div class="col movements-date">24/01/2037</div>
-                                        <div class="col movements-category">Petrol</div>
-                                        <div class="col movements-value">-R378</div>
+                        <div class="container">
+                            <div class="row mb-2">
+                                <h4 class="text-muted text-uppercase small">All Transactions</h4>
+                            </div>
+                            <div class="container movements container-movements card-widget">
+                            <!-- <div class="container"> -->
+                                <div class="card-widget-body h-100">
+                                    <div class="row">
+                                            <div class="col movements-type movements-type--deposit">2 deposit</div>
+                                            <div class="col movements-date">3 days ago</div>
+                                            <div class="col movements-category">Food</div>
+                                            <div class="col movements-value">R4 000</div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col movements-type movements-type--withdrawal">1 withdrawal</div>
+                                            <div class="col movements-date">24/01/2037</div>
+                                            <div class="col movements-category">Petrol</div>
+                                            <div class="col movements-value">-R378</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                     <div class="col-lg-5 mb-4 mb-lg-0 operation-view">
                         <div class="container deposits operations-display p-2 card-widget">

@@ -195,7 +195,8 @@ inputLoginBtn.addEventListener('click', function(event){
             else if (hrs >= 17 && hrs <= 24)
             greet = 'Good Evening';
         //display ui and welcome message
-        welcomeMessage.textContent = `${greet}, Welcome back ${currentAccount.owner.charAt(0).toUpperCase()+ currentAccount.owner.slice(1).split(' ')[0]}.`;
+        welcomeMessage.textContent = `${greet}, ${currentAccount.owner.charAt(0).toUpperCase()+ currentAccount.owner.slice(1).split(' ')[0]}.`;
+        welcomeMessage.style.padding = "10px";
         displayContainerApp.style.opacity = 100;
 
         //have the logins loose focus on revealing data on screen
