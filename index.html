@@ -82,24 +82,42 @@
                 </div>
                 <div class="row mt-5 justify-content-md-center">
                     <div class="col-lg-7 mb-4 mb-lg-0 transaction-view">
-                        <div class="container">
-                            <div class="row mb-2">
+                        <div class="container card-widget card-widget-header-included">
+                            <div class="row mb-2 ml-2">
                                 <h4 class="text-muted text-uppercase small">All Transactions</h4>
                             </div>
-                            <div class="container movements container-movements card-widget">
+                            <!-- <table>
+                            <thead class="thead-dark">
+                                <tr>
+                                     <th scope="col">Type</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                                </thead>
+                            </table> -->
+                            <div class="container">
+                                <div class="row thead-dark">
+                                    <!-- <div class="col ">2 deposit</div> -->
+                                    <div class="col-md-2 offset-md-3">Category</div>
+                                    <div class="col-md-3 offset-md-1 transaction-header">Date</div>
+                                    <div class="col-md-3 transaction-header">Amount</div>
+                                </div>
+                            </div>
+                            <div class="container movements container-movements card-body pt-0">
                             <!-- <div class="container"> -->
                                 <div class="card-widget-body h-100">
-                                    <div class="row">
-                                            <div class="col movements-type movements-type--deposit">2 deposit</div>
+                                    <div class="row my-1">
+                                            <div class="col movements-type movements-type-deposit">2 deposit</div>
                                             <div class="col movements-date">3 days ago</div>
                                             <div class="col movements-category">Food</div>
                                             <div class="col movements-value">R4 000</div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row my-1">
                                             <div class="col movements-type movements-type--withdrawal">1 withdrawal</div>
                                             <div class="col movements-date">24/01/2037</div>
                                             <div class="col movements-category">Petrol</div>
-                                            <div class="col movements-value">-R378</div>
+                                            <div class="col movements-value col-auto col-ms-auto">R -R378</div>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +187,7 @@
                         <div class="container close-account operations-display mt-2 p-2 card-widget">
                             <div class="h-50 pb-4 pb-lg-2  container closure p-2">
                                 <div class="card-body">
-                                    <div class="row mb-2">
+                                    <div class="row">
                                         <h4 class="text-muted text-uppercase small">Close your account</h4>
                                     </div>
                                 </div>

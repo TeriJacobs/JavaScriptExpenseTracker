@@ -103,7 +103,7 @@ const transactions = function(acc, sort = false)
 
     movs.forEach(function(mov, i) 
     {
-            const type = mov > 0 ? 'deposit': 'withdrawal';
+            const type = mov > 0 ? `<i class="bi bi-wallet" style="font-size: initial;"></i>  deposit`: `<i class="bi bi-cash-coin" style="font-size: initial;"></i>  withdrawal`;
             const name = acc.categoryType[i];
             
             const date = new Date(acc.date[i]); // create the new date object for a string method
@@ -111,14 +111,17 @@ const transactions = function(acc, sort = false)
             
             const html =
       `
-        <div class="row">
-            <div class="col movements-type movements-type--deposit">${i + 1} ${type}</div>
-            <div class="col movements-category">${name}</div>
-            <div class="col movements-date">${displayDate}</div>
-            <div class="col movements-value">${mov}</div>
-        </div>
+        <table class="table table-striped">
+        <tr class="row">
+            <td class="col movements-type movements-type-deposit"> ${type}</div>
+            <td class="col movements-category">${name}</div>
+            <td class="col movements-date">${displayDate}</div>
+            <td class="col movements-value ml-2">R ${mov}</div>
+        </tr>
+        </table>
       `;
       containerMovements.insertAdjacentHTML('afterbegin', html);
+
     });
 }
 

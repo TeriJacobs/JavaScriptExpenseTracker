@@ -118,7 +118,23 @@
 .logout-btn-wrapper{
   position:absolute;
 }
+.card-widget-header-included{
+  /* border-radius: initial; */
+  border-radius: 1rem;
+}
 
+.movements-type-deposit{
+  border-radius: 1px solid red;
+
+}
+.transaction-header{
+  padding-left:0 !important;
+  margin-left:inherit;
+}
+.thead-dark{
+  background-color: rgb(21, 21, 21);
+  color: #fff;
+}
 @media (min-width: 300px) and (max-width: 984px) { 
   .login-header-details{
     position: relative;
@@ -134,6 +150,17 @@
   }
   .logout-btn-wrapper{
     text-align: end;
+  }
+  .movements-type{
+    display:none;
+  }
+  .container-movements{
+    margin:0%;
+  }
+  .movements-value{
+    margin-left: auto!important;
+    flex: 0 0 auto;
+    width: auto;
   }
  }
 
