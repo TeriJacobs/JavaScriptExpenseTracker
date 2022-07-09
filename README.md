@@ -2,7 +2,7 @@
 
 While learning <i>The Complete JavaScript Course 2022: From Zero to Expert</i>, I thought it would only be fitting to build out my own version of the tasked activities to implement what I have learnt, and place it into a project that can be tracked and stored on Github.
 
-This will be a four phrase project:
+<ins>This will be a four phrase project:</ins>
 
 <ul>
   <li>phase 1: building the web interface with javascript features</li>
@@ -11,7 +11,7 @@ This will be a four phrase project:
   <li>phase 4: implementing a frontend framework</li>
 </ul>
 
-Project Progress
+<ins>Project Progress</ins>
 
 Phase 1: [ April 2022 - June 2022] :heavy_check_mark: <br>
 Phase 2: [ June 2022 ] :heavy_check_mark: <br>
