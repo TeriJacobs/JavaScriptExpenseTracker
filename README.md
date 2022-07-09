@@ -11,9 +11,10 @@ This will be a four phrase project:
   <li>phase 4: implementing a frontend framework</li>
 </ul>
 
+Project Progress
 
-Phase 1: April 2022 - June 2022
-Phase 2: June 2022
+Phase 1: [ April 2022 - June 2022] :heavy_check_mark: <br>
+Phase 2: [ June 2022 ] :heavy_check_mark: <br>
 Phase 3: July 2022 - in development
 
 The functionality consists of:
