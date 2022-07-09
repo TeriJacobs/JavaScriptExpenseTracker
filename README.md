@@ -12,7 +12,9 @@ This will be a four phrase project:
 </ul>
 
 
-April 2022 - phase 1 is in development
+Phase 1: April 2022 - June 2022
+Phase 2: June 2022
+Phase 3: July 2022 - in development
 
 The functionality consists of:
 
