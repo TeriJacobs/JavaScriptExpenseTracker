@@ -162,6 +162,9 @@
     flex: 0 0 auto;
     width: auto;
   }
+  .thead-dark{
+    display:none !important;
+  }
  }
 
 @media(min-width: 984px){
