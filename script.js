@@ -267,10 +267,10 @@ function dispData(){
     if(localStorage.getItem('formData')){
         containerMovements.innerHTML ="";
         JSON.parse(localStorage.getItem('formData')).forEach(item=> {
-            const type = item.amount > 0 ? `<i class="bi bi-wallet" style="font-size: initial;"></i>  deposit`: `<i class="bi bi-cash-coin" style="font-size: initial;"></i>  expense`;
+            const type = item.amount > 0 ? `<i class="bi bi-wallet" style="font-size: initial; color:rgb(53, 182, 83);"></i>  deposit `: `<i class="bi bi-cash-coin" style="font-size: initial; color:red;"></i>  expense `;
             containerMovements.innerHTML += `
             <tbody class="table">
-            <tr>
+            <tr class="table-row-height" >
                 <td class="col movements-type movements-type-deposit"> ${type}</div>
                 <td class="col movements-category">${item.categoryType}</div>
                 <td class="col movements-date">${item.date}</div>
