@@ -5,33 +5,63 @@
 .input-logout-btn{
   opacity: 0;
 }
+.transaction-summary-text{
+  font-size:28px;
+}
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   flex-grow: 0;
   flex-shrink: 0;
 }
+.income-icon-background{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: rgb(129,171,221);
+}
+.expense-icon-background{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: rgb(197,114,194);
+}
+.balance-icon-background{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: #35b653;;
+}
+.bi{
+  font-size:33px;
+}
 .bg-indigo {
-  background-color: #6610f2;
+  background-color: rgb(129,171,221);
 }
 .bi-wallet{
-  color:#6610f2;
-  font-size: x-large;
+  color:#fff;
+  margin-left: 10px;
 }
 .bg-red {
-  background-color: #dc3545;
+  background-color: rgb(197,114,194);
 }
 .bi-cash-coin{
-  color:#dc3545;
-  font-size: x-large;
+  color:#fff;
+  margin-left: 10px;
 }
 .bg-green {
   background-color: #35b653;
 }
 .bi-wallet2{
-  color:#35b653;
-  font-size: x-large;
+  color:#fff;
+  margin-left: 10px;
 }
 .me-3 {
   margin-right: 1rem !important;
@@ -39,6 +69,7 @@
 .card-widget {
   padding: 1.5rem;
   border-radius: 50rem;
+  /* border: solid #6610f2; */
   background: #fff;
   -webkit-box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
@@ -50,13 +81,20 @@
   align-items: center;
 }
 .card-widget-income{
-  background-color:rgb(102 16 242 / 5%);
+  /* background-color:rgb(102 16 242 / 5%); */
+  border: solid rgb(129,171,221) !important;
 }
 .card-widget-expenses{
-  background-color:rgb(220 53 69/ 5%);
+  /* background-color:rgb(220 53 69/ 5%); */
+  border: solid rgb(197,114,194) !important;
 }
-.card-widget-balance{
-  background-color:rgb(53 182 83 / 5%);
+.card-widget-close{
+  /* background-color:rgb(53 182 83 / 5%); */
+  border: solid rgb(220 53 69)!important;
+}
+.card-widget-transactions{
+  /* background-color:rgb(53 182 83 / 5%); */
+  border: solid rgb(53 182 83 / 45%);
 }
 .card {
   position: relative;
@@ -89,7 +127,15 @@
   flex: 1 1 auto;
   padding: 2rem;
 }
-
+.input-income-border{
+  border: solid rgb(129 171 221 / 85%) !important;
+}
+.expense-income-border{
+  border: solid rgb(197,114,194) !important;
+}
+.input-account-border{
+  border: solid rgb(220 53 69)!important;
+}
 /* Listed Transactions on Account */
 .container-movements {
   overflow: auto;

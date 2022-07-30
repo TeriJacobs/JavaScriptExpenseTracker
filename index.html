@@ -16,7 +16,6 @@
                 <div class="row  mt-5">
                     <form class="login-form">
                         <div class="row input-group input-group-sm">
-                            <!-- <div class="col-md-4 offset-md-10 col-auto ms-auto logout-btn-wrapper"> -->
                             <div class="col-auto ms-auto">
                                 <button type="button" class="btn btn-outline-dark input-logout-btn">Logout</button>
                             </div>
@@ -47,24 +46,34 @@
             <section class="main">
                 <div class="row mt-5 justify-content-md-center">
                     <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
-                        <div class="card-widget card-widget-income">
+                        <div class="card-widget">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-indigo"></div>
                                 <div class="text">
-                                    Income received: <span class="transaction-income"></span>
+                                    <span class="transaction-income transaction-summary-text"></span>
+                                    <span class="text-muted text-uppercase small">Income</span>
                                 </div>  
-                                <div class="col-auto ms-auto"><i class="bi bi-wallet"></i></div>
+                                <div class="col-auto ms-auto">
+                                    <div class="income-icon-background">
+                                        <i class="bi bi-wallet"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="mb-4 col-lg-4 col-md-12 col-sm-12 account-summary">
-                        <div class="card-widget card-widget-expenses">
+                        <div class="card-widget">
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-red"></div>
                                 <div class="text">
-                                    Expenses: <span class="transaction-expenses"></span>
+                                    <span class="transaction-expenses transaction-summary-text"></span>
+                                    <span class="text-muted text-uppercase small">Expenses</span>
                                 </div>
-                                <div class="col-auto ms-auto"><i class="bi bi-cash-coin"></i></div>
+                                <div class="col-auto ms-auto">
+                                    <div class="expense-icon-background">
+                                        <i class="bi bi-cash-coin"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,16 +82,21 @@
                             <div class="card-widget-body">
                                 <div class="dot me-3 bg-green"></div>
                                 <div class="text">
-                                    Balance: <span class="transaction-balance"></span>
+                                    <span class="transaction-balance transaction-summary-text"></span>
+                                    <span class="text-muted text-uppercase small">Balance</span>
                                 </div>
-                                <div class="col-auto ms-auto"><strong><i class="bi bi-wallet2"></i></strong></div>
+                                <div class="col-auto ms-auto">
+                                    <div class="balance-icon-background">
+                                        <i class="bi bi-wallet2"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-5 justify-content-md-center">
                     <div class="col-lg-7 mb-4 mb-lg-0 transaction-view">
-                        <div class="container card-widget card-widget-header-included">
+                        <div class="container card-widget card-widget-transactions card-widget-header-included">
                             <div class="row mb-2 ml-2">
                                 <h4 class="text-muted text-uppercase small">All Transactions</h4>
                             </div>
@@ -120,7 +134,7 @@
                         
                     </div>
                     <div class="col-lg-5 mb-4 mb-lg-0 operation-view">
-                        <div class="container deposits operations-display p-2 card-widget">
+                        <div class="container deposits operations-display p-2 card-widget card-widget-income">
                             <div class="h-50 pb-4 pb-lg-2">
                                 <div class="card-body">
                                     <div class="row mb-2">
@@ -130,10 +144,10 @@
                                         <form id="form-deposits">
                                             <div class="form-row align-items-center input-group input-group-sm">
                                                 <div class="col">
-                                                    <input type="date" class=" form-control input-date-income" placeholder="Date" required />
+                                                    <input type="date" class=" form-control input-date-income input-income-border" placeholder="Date" required />
                                                 </div>
                                                 <div class="col mx-2">
-                                                    <input type="amount" class=" form-control input-amount-income" placeholder="R400" required />
+                                                    <input type="amount" class=" form-control input-amount-income input-income-border" placeholder="R400" required />
                                                 </div>
                                                 <div class="col">
                                                     <button type="button" class="btn btn-outline-dark submit-income" style="width:100%">Submit</button>
@@ -144,7 +158,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container withdrawals operations-display mt-2 p-2 card-widget">
+                        <div class="container withdrawals operations-display mt-2 p-2 card-widget card-widget-expenses">
                             <div class="h-50 pb-4 pb-lg-2">
                                 <div class="card-body">
                                     <div class="row mb-2">
@@ -154,7 +168,7 @@
                                         <form id="form-expenses" class="input-group input-group-sm">
                                             <div class="form-row">
                                                 <div class="mb-1">
-                                                    <select class="form-control input-type-expense" required="true">
+                                                    <select class="form-control input-type-expense expense-income-border" required="true">
                                                         <option value="" disabled selected hidden>-Please Select-</option>
                                                         <option>Food</option>
                                                         <option>Petrol</option>
@@ -165,10 +179,10 @@
                                             </div>
                                             <div class="form-row align-items-center input-group input-group-sm">
                                                 <div class="col">
-                                                    <input type="date" class=" form-control input-date-expense" placeholder="Date" required="true">
+                                                    <input type="date" class=" form-control input-date-expense expense-income-border" placeholder="Date" required="true">
                                                 </div>
                                                 <div class="col mx-2">
-                                                    <input type="amount" class=" form-control input-amount-expense" placeholder="R400" required="true">
+                                                    <input type="amount" class=" form-control input-amount-expense expense-income-border" placeholder="R400" required="true">
                                                 </div>
                                                 <div class="col">
                                                     <button type="button" class="btn btn-outline-dark submit-expense" style="width:100%">Submit</button>
@@ -179,7 +193,7 @@
                                 </div>
                             </div> 
                         </div>
-                        <div class="container close-account operations-display mt-2 p-2 card-widget">
+                        <div class="container close-account operations-display mt-2 p-2 card-widget card-widget-close">
                             <div class="h-50 pb-4 pb-lg-2  container closure p-2">
                                 <div class="card-body">
                                     <div class="row">
@@ -190,10 +204,10 @@
                                     <form>
                                         <div class="form-row align-items-center input-group input-group-sm">
                                             <div class="col">
-                                                <input type="text" class=" form-control input-account-username" placeholder="username" required />
+                                                <input type="text" class="form-control input-account-username input-account-border" placeholder="username" required />
                                             </div>
                                             <div class="col mx-2">
-                                                <input type="password" class=" form-control input-account-password" placeholder="password" required />
+                                                <input type="password" class=" form-control input-account-password input-account-border" placeholder="password" required />
                                             </div>
                                             <div class="col">
                                                 <button type="button" class="btn btn-outline-dark submit-delete-account" style="width:100%">Submit</button>
