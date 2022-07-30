@@ -181,6 +181,9 @@
   background-color: rgb(21, 21, 21);
   color: #fff;
 }
+.table-row-height{
+  height:8px !important;
+}
 @media (min-width: 300px) and (max-width: 984px) { 
   .login-header-details{
     position: relative;

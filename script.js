@@ -68,19 +68,11 @@ const inputAccountUsername = document.querySelector('.input-account-username');
 const inputAccountPassword = document.querySelector('.input-account-password');
 
 /////////////////// Functions ///////////////////
-const greeting = function(){
-    console.log('upon time of day - greet user with name and evening/moring/afternoon');
-}
-greeting();
-
 // date functionality
 const formatMovementDate = function(date){
     const calcDaysPassed = (date1, date2) => Math.round(Math.abs(date2-date1)/ (1000 * 60 *60 *24));
 
     const daysPassed = calcDaysPassed(new Date(), date);
-
-    // const now = new Date();
-    // const daysPassed = calcDaysPassed(new Intl.DateTimeFormat('en-GB').format(now));
 
     if(daysPassed === 0) return 'Today';
     if(daysPassed === 1) return 'Yesterday';
@@ -95,56 +87,61 @@ const formatMovementDate = function(date){
 
 }
 
-const transactions = function(acc, sort = false)
-{
-    containerMovements.innerHTML = '';
-
-    const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
-
-    movs.forEach(function(mov, i) 
-    {
-            const type = mov > 0 ? `<i class="bi bi-wallet" style="font-size: initial;"></i>  deposit`: `<i class="bi bi-cash-coin" style="font-size: initial;"></i>  expense`;
-            const name = acc.categoryType[i];
-            
-            const date = new Date(acc.date[i]); // create the new date object for a string method
-            const displayDate = formatMovementDate (date);
-            
-            const html =
-      `
-        <table class="table table-striped">
-        <tr class="row">
-            <td class="col movements-type movements-type-deposit"> ${type}</div>
-            <td class="col movements-category">${name}</div>
-            <td class="col movements-date">${displayDate}</div>
-            <td class="col movements-value ml-2">R ${mov}</div>
-        </tr>
-        </table>
-      `;
-      containerMovements.insertAdjacentHTML('afterbegin', html);
-
-    });
-}
 
 //below now  beng called in the displayUI function
-// transactions(teri.movements, teri.categoryType);
 
 // displayBalance(teri.movements);
 const displayBalance = function(acc){
-    acc.balance = acc.movements.reduce((accum, mov) => accum + mov, 0);
-    transactionBalance.textContent = `R ${acc.balance}`;
+    let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
+    let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
+
+    let total = 0;
+    Object.values(formDataLS).forEach(val => {
+
+        total = total + val.amount;
+        console.log(total);
+        transactionBalance.textContent = `R ${total}`
+        
+    });
 };
-//const displayIncome = function(movements){
-const displayIncome = function(acc) {
-    acc.income = acc.movements.filter((mov, i) => mov > 0)
-                            .reduce((accum, mov) => accum + mov, 0);
-        transactionIncome.textContent = `R ${acc.income}`;
+
+const displayIncome = function( acc) {
+    let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
+    let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
+
+    for(let incomes of formDataLS){
+        console.log(`${incomes.amount} : `);
     }
+
+    let total = 0;
+    //Object.values(teri.movements).forEach(val => console.log(val));
+    Object.values(formDataLS).forEach(val => {
+        if(val.amount > 0){
+        //console.log(val.amount)
+        total = total + val.amount;
+        console.log(total);
+        transactionIncome.textContent = `R ${total}`
+        }
+    });
+
+}
 // displayExpense(teri.movements);
-const displayExpense= function(acc) {
-    acc.expense = acc.movements.filter((mov, i) => mov < 0)
-                            .reduce((accum, mov) => accum + mov, 0);
-        transactionExpenses.textContent = `R ${acc.expense * -1}`;
-    }
+const displayExpense = function(acc) {
+    let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
+    let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
+
+    let total = 0;
+
+    Object.values(formDataLS).forEach(val => {
+
+        if(val.amount < 0){
+            total = total + val.amount;
+            console.log(total);
+            transactionExpenses.textContent = `R ${total}`
+        }
+    });
+
+}
 
 
 // function creating the username
@@ -162,8 +159,6 @@ console.log(accounts);
 /////////////////////// Displaying purpose of the ui
 const updateUI = function(acc) {
 
-    //display and calculate the transactions via a call to funtion
-    transactions(acc);
 
     // display and call funct on balance
     displayBalance(acc);
@@ -171,6 +166,9 @@ const updateUI = function(acc) {
     //display summary
     displayExpense(acc);
     displayIncome(acc);
+
+    //new transaction table display
+    dispData(acc)
 }
 
 
@@ -186,7 +184,6 @@ inputLoginBtn.addEventListener('click', function(event){
     event.preventDefault();
 
     currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
-    console.log(currentAccount);
     if(currentAccount?.pin === Number(inputLoginPin.value)){
         let myDate = new Date();
         let hrs = myDate.getHours();
@@ -228,35 +225,63 @@ inputLogoutBtn.addEventListener('click', function(event){
 
 })
 
+
 // transfering money logic
 // tracking income earned
 submitIncomeBtn.addEventListener('click', function(event){
     event.preventDefault();
+
     const date = inputDateIncome.value;
     const amount = Number(inputAmountIncome.value);
     const categoryType = 'income'
 
-    if(amount > 0 && currentAccount.balance >= amount)
-    {
-        currentAccount.movements.push(amount);
-        currentAccount.categoryType.push(categoryType);
-        currentAccount.date.push(date);
-        // updateUI(teri.movements);
-        //updateUI(currentAccount);
-    } else if ((amount == 0 || amount <= -1 || isNaN(amount)) && (date === undefined || isNaN(date))){
-        alert('feild empty Select a date and enter a number greater than 0');
-        return false;
-    }
+    if(amount <= 0 || date === "") {
+        alert ('enter a number larger than 10')
+    } else {
 
-    if(date === ""){
-        alert('Please enter a passed or current date');
-        return false
-    }
+    let formData = JSON.parse(localStorage.getItem('formData')) || [];
+    let exist = formData.length &&
+                JSON.parse(localStorage.getItem('formData')).some(data => {
+                    data.date === inputDateIncome.value &&
+                    data.amount == Number(inputAmountIncome.value) && 
+                    data.categoryType == 'income'
+                });
+            if(!exist){
+                formData.push({
+                    date: inputDateIncome.value,
+                    amount: Number(inputAmountIncome.value),
+                    categoryType: 'income'
+                });
+                localStorage.setItem('formData', JSON.stringify(formData));
+                // dispData()
+            } else {
+                alert('feild empty Select a date and enter a number greater than 0');
+            }
+    } 
 
     updateUI(currentAccount);
     formDeposits.reset();
-
 });
+
+function dispData(){
+    if(localStorage.getItem('formData')){
+        containerMovements.innerHTML ="";
+        JSON.parse(localStorage.getItem('formData')).forEach(item=> {
+            const type = item.amount > 0 ? `<i class="bi bi-wallet" style="font-size: initial; color:rgb(53, 182, 83);"></i>  deposit `: `<i class="bi bi-cash-coin" style="font-size: initial; color:red;"></i>  expense `;
+            containerMovements.innerHTML += `
+            <tbody class="table">
+            <tr class="table-row-height" >
+                <td class="col movements-type movements-type-deposit"> ${type}</div>
+                <td class="col movements-category">${item.categoryType}</div>
+                <td class="col movements-date">${item.date}</div>
+                <td class="col movements-value ml-2">R ${item.amount}</div>
+            </tr>
+            </tbody>
+            `
+        })
+        
+    };
+}
 
 // tracking expenditure
 submitExpenseBtn.addEventListener('click', function(event){
@@ -265,36 +290,29 @@ submitExpenseBtn.addEventListener('click', function(event){
     const amount = Number(inputAmountExpense.value);
     const categoryType = inputTypeExpense.value;
 
-    if(amount > 0 && currentAccount.balance >= amount)
+    if(amount <= 0 || date === "" || categoryType === "" )
     {
-        currentAccount.movements.push(-amount);
-        currentAccount.categoryType.push(categoryType);
-        currentAccount.date.push(date);
-        //updateUI(currentAccount);
-    } 
-    
-    if(currentAccount.balance < amount){
-        alert('Amount cannot exceed balance');
-    } else if(amount <= 0){
-        alert('Amount needs to be greater than 0');
-    }
+        alert('Please ensure all inputs have been added');
+    } else {
 
-    // potential errors on user inputs
-    if(amount == 0 || amount <= -1 || isNaN(amount) ){
-        alert('feild empty Enter a number greater than 0');
-        return false
-    }
-
-    if(date === ""){
-        alert('Please enter a passed or current date');
-        return false
-    }
-
-    if(categoryType === "" || categoryType === "---please Select---"){
-        alert('Please select a category');
-        return false
-    }
-
+        let formData = JSON.parse(localStorage.getItem('formData')) || [];
+        let exist = formData.length &&
+                    JSON.parse(localStorage.getItem('formData')).some(data => {
+                        data.date === inputDateExpense.value &&
+                        data.amount == Number(inputAmountExpense.value) && 
+                        data.categoryType == inputTypeExpense.value
+                    });
+                if(!exist){
+                    formData.push({
+                        date: inputDateExpense.value,
+                        amount: Number(inputAmountExpense.value * -1),
+                        categoryType: inputTypeExpense.value
+                    });
+                    localStorage.setItem('formData', JSON.stringify(formData));
+                } else {
+                    alert('feild empty Select a date and enter a number greater than 0');
+                }
+        } 
     updateUI(currentAccount);
     formExpenses.reset();
     
@@ -317,7 +335,7 @@ submitDeleteBtn.addEventListener('click', function (e) {
       // Hide UI
       displayContainerApp.style.opacity = 0;
       loginFormDisplay.style.opacity = 0;
-      //alert("The user account has successfully been deleted.")
+
       successDeleteMessage = welcomeMessage;
       successDeleteMessage.textContent = "The user account has been successfully been deleted."
       successDeleteMessage.style.color = "green";
