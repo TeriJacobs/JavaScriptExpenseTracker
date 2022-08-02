@@ -86,13 +86,41 @@ const formatMovementDate = function(date){
     }
 
 }
+const transactions = function(acc, sort = false)
+{
+    containerMovements.innerHTML = '';
+    const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
 
+    movs.forEach(function(mov, i) 
+    {
+            const type = mov > 0 ? `<i class="bi bi-wallet" style="font-size: initial; color:rgb(53, 182, 83);"></i>  deposit `: `<i class="bi bi-cash-coin" style="font-size: initial; color:red;"></i>  expense `;
+            const name = acc.categoryType[i];
+
+            const date = new Date(acc.date[i]); // create the new date object for a string method
+            const displayDate = formatMovementDate (date);
+            
+            const html =
+      `
+        <tbody class="table table-striped">
+            <td class="col movements-type movements-type-deposit"> ${type}</div>
+            <td class="col movements-category">${name}</div>
+            <td class="col movements-date">${displayDate}</div>
+            <td class="col movements-value ml-2">R ${mov}</div>
+        </tbody>
+      `;
+      containerMovements.insertAdjacentHTML('afterbegin', html);
+    });
+}
 
 //below now  beng called in the displayUI function
 
 // displayBalance(teri.movements);
 const displayBalance = function(acc){
-    let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
+    if(JSON.parse(localStorage.getItem('formData')) || []){
+        acc.balance = acc.movements.reduce((accum, mov) => accum + mov, 0);
+        transactionBalance.textContent = `R ${acc.balance}`;
+    } else {
+    let [{ amount }] = JSON.parse(localStorage.getItem('formData'));
     let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
 
     let total = 0;
@@ -103,15 +131,17 @@ const displayBalance = function(acc){
         transactionBalance.textContent = `R ${total}`
         
     });
+    }
 };
 
 const displayIncome = function( acc) {
-    let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
+    if(JSON.parse(localStorage.getItem('formData')) || []){
+        acc.income = acc.movements.filter((mov, i) => mov > 0)
+                            .reduce((accum, mov) => accum + mov, 0);
+        transactionIncome.textContent = `R ${acc.income}`;
+    } else {
+    let [{ amount }] = JSON.parse(localStorage.getItem('formData'));
     let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
-
-    for(let incomes of formDataLS){
-        console.log(`${incomes.amount} : `);
-    }
 
     let total = 0;
     //Object.values(teri.movements).forEach(val => console.log(val));
@@ -123,11 +153,18 @@ const displayIncome = function( acc) {
         transactionIncome.textContent = `R ${total}`
         }
     });
+    }
 
 }
 // displayExpense(teri.movements);
 const displayExpense = function(acc) {
-    let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
+    if(JSON.parse(localStorage.getItem('formData')) || [])
+    {
+        acc.expense = acc.movements.filter((mov, i) => mov < 0)
+        .reduce((accum, mov) => accum + mov, 0);
+        transactionExpenses.textContent = `R ${acc.expense * -1}`;
+    } else {
+        let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
     let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
 
     let total = 0;
@@ -140,6 +177,7 @@ const displayExpense = function(acc) {
             transactionExpenses.textContent = `R ${total}`
         }
     });
+}
 
 }
 
@@ -158,7 +196,8 @@ createUserName(accounts);
 console.log(accounts);
 /////////////////////// Displaying purpose of the ui
 const updateUI = function(acc) {
-
+    //displaying th JS hardcoded object transactions
+    transactions(acc);
 
     // display and call funct on balance
     displayBalance(acc);
