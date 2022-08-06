@@ -7,7 +7,7 @@ While learning <i>The Complete JavaScript Course 2022: From Zero to Expert</i>, 
 <ul>
   <li>phase 1: building the web interface with javascript features</li>
   <li>phase 2: mobile responsive</li>
-  <li>phase 3: implementing a database connection</li>
+  <li>phase 3: implementing a database connection (opted for localStorage as nodejs was not the priority for this stage of the project)</li>
   <li>phase 4: implementing a frontend framework</li>
 </ul>
 
@@ -15,7 +15,8 @@ While learning <i>The Complete JavaScript Course 2022: From Zero to Expert</i>, 
 
 Phase 1: [ April 2022 - June 2022] :heavy_check_mark: <br>
 Phase 2: [ June 2022 ] :heavy_check_mark: <br>
-Phase 3: July 2022 - in development
+Phase 3: [July - August 2022 ] :heavy_check_mark: <br>
+Phase 4: August 2022 - in development
 
 The functionality consists of:
 
