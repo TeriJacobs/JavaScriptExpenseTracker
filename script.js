@@ -1,8 +1,8 @@
 // 'use strict';
 
-/////////////////// Expense Tracker /////////////////
-
-/////////////////// Data ///////////////////
+///////////// Expense Tracker ///////////
+// ======================================
+///////////// Data //////////////////////
 const teri = {
     owner: 'teri jacobs',
     movements: [600, 9000, -4000, 6000, -200, -50, -600],
@@ -33,7 +33,6 @@ const guest = {
     ],
     pin: 222,
 }
-
 const accounts = [teri, guest];
 
 /////////////////// Elements ///////////////////
@@ -68,7 +67,8 @@ const inputAccountUsername = document.querySelector('.input-account-username');
 const inputAccountPassword = document.querySelector('.input-account-password');
 
 /////////////////// Functions ///////////////////
-// date functionality
+// =============================================
+// date and greeting functionality
 const formatMovementDate = function(date){
     const calcDaysPassed = (date1, date2) => Math.round(Math.abs(date2-date1)/ (1000 * 60 *60 *24));
 
@@ -86,104 +86,99 @@ const formatMovementDate = function(date){
     }
 
 }
-const transactions = function(acc, sort = false)
-{
-    containerMovements.innerHTML = '';
-    const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
+// placeholder transaction data
+// const transactions = function(acc, sort = false)
+// {
+//     containerMovements.innerHTML = '';
+//     const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
 
-    movs.forEach(function(mov, i) 
-    {
-            const type = mov > 0 ? `<i class="bi bi-wallet" style="font-size: initial;"></i>  deposit`: `<i class="bi bi-cash-coin" style="font-size: initial;"></i>  expense`;
-            const name = acc.categoryType[i];
+//     movs.forEach(function(mov, i) 
+//     {
+//             const type = mov > 0 ? `<i class="bi bi-wallet" style="font-size: initial;"></i>  deposit`: `<i class="bi bi-cash-coin" style="font-size: initial;"></i>  expense`;
+//             const name = acc.categoryType[i];
 
-            const date = new Date(acc.date[i]); // create the new date object for a string method
-            const displayDate = formatMovementDate (date);
+//             const date = new Date(acc.date[i]); // create the new date object for a string method
+//             const displayDate = formatMovementDate (date);
             
-            const html =
-      `
-        <tbody class="table table-striped">
-        <tr class="row">
-            <td class="col movements-type movements-type-deposit"> ${type}</div>
-            <td class="col movements-category">${name}</div>
-            <td class="col movements-date">${displayDate}</div>
-            <td class="col movements-value ml-2">R ${mov}</div>
-        </tr>
-        </tbody>
-      `;
-      containerMovements.insertAdjacentHTML('afterbegin', html);
-    });
-}
+//             const html =
+//       `
+//         <tbody class="table table-striped">
+//         <tr class="row">
+//             <td class="col movements-type movements-type-deposit"> ${type}</div>
+//             <td class="col movements-category">${name}</div>
+//             <td class="col movements-date">${displayDate}</div>
+//             <td class="col movements-value ml-2">R ${mov}</div>
+//         </tr>
+//         </tbody>
+//       `;
+//       containerMovements.insertAdjacentHTML('afterbegin', html);
+//     });
+// }
 
-//below now  beng called in the displayUI function
-
-// displayBalance(teri.movements);
+// Summary functionality of the UI display
+//======================================
 const displayBalance = function(acc){
-    if(JSON.parse(localStorage.getItem('formData')) || []){
-        acc.balance = acc.movements.reduce((accum, mov) => accum + mov, 0);
-        transactionBalance.textContent = `R ${acc.balance}`;
+    if(JSON.parse(localStorage.getItem('formData')) === null){
+        // acc.balance = acc.movements.reduce((accum, mov) => accum + mov, 0);
+        // transactionBalance.textContent = `R ${acc.balance}`;
+        transactionBalance.textContent = `R 0`;
     } else {
     let [{ amount }] = JSON.parse(localStorage.getItem('formData'));
     let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
 
     let total = 0;
     Object.values(formDataLS).forEach(val => {
-
         total = total + val.amount;
-        console.log(total);
         transactionBalance.textContent = `R ${total}`
-        
     });
     }
 };
 
 const displayIncome = function( acc) {
-    if(JSON.parse(localStorage.getItem('formData')) || []){
-        acc.income = acc.movements.filter((mov, i) => mov > 0)
-                            .reduce((accum, mov) => accum + mov, 0);
-        transactionIncome.textContent = `R ${acc.income}`;
+    if(JSON.parse(localStorage.getItem('formData')) === null || JSON.parse(localStorage.getItem('formData')) === []){
+        // acc.income = acc.movements.filter((mov, i) => mov > 0)
+        //                     .reduce((accum, mov) => accum + mov, 0);
+        // transactionIncome.textContent = `R ${acc.income}`;
+        transactionIncome.textContent = `R 0`;
     } else {
-    let [{ amount }] = JSON.parse(localStorage.getItem('formData'));
-    let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
+    let { amount } = JSON.parse(localStorage.getItem('formData'));
+    formDataLS = JSON.parse(localStorage.getItem('formData', amount));
 
     let total = 0;
-    //Object.values(teri.movements).forEach(val => console.log(val));
     Object.values(formDataLS).forEach(val => {
         if(val.amount > 0){
-        //console.log(val.amount)
         total = total + val.amount;
-        console.log(total);
         transactionIncome.textContent = `R ${total}`
         }
     });
     }
-
 }
-// displayExpense(teri.movements);
+
 const displayExpense = function(acc) {
-    if(JSON.parse(localStorage.getItem('formData')) || [])
+    if(JSON.parse(localStorage.getItem('formData')) === null || JSON.parse(localStorage.getItem('formData')) === [])
     {
-        acc.expense = acc.movements.filter((mov, i) => mov < 0)
-        .reduce((accum, mov) => accum + mov, 0);
-        transactionExpenses.textContent = `R ${acc.expense * -1}`;
+        // acc.expense = acc.movements.filter((mov, i) => mov < 0)
+        // .reduce((accum, mov) => accum + mov, 0);
+        //transactionExpenses.textContent = `R ${acc.expense * -1}`;
+        transactionExpenses.textContent = `R ${0 * -1}`;
     } else {
-        let [{ amount }] = JSON.parse(localStorage.getItem('formData')) || [];
+        let { amount } = JSON.parse(localStorage.getItem('formData'));
     let formDataLS = JSON.parse(localStorage.getItem('formData', amount));
 
     let total = 0;
 
     Object.values(formDataLS).forEach(val => {
-
         if(val.amount < 0){
             total = total + val.amount;
-            console.log(total);
+            //console.log(total);
             transactionExpenses.textContent = `R ${total}`
         }
     });
+    }
+
+
 }
-
-}
-
-
+// =============================
 // function creating the username
 const createUserName = function(account){
     account.forEach(function(accountHolder){
@@ -195,12 +190,11 @@ const createUserName = function(account){
     })
 };
 createUserName(accounts);
-console.log(accounts);
-/////////////////////// Displaying purpose of the ui
+// =============================
+// Displaying all the data of the ui summary
 const updateUI = function(acc) {
     //displaying th JS hardcoded object transactions
-    transactions(acc);
-
+    // transactions(acc);
     // display and call funct on balance
     displayBalance(acc);
 
@@ -212,10 +206,9 @@ const updateUI = function(acc) {
     dispData(acc)
 }
 
-
+//=============================
 ///// Event Handlers ////
-let currentAccount; // for use on the login
-//fake account login
+let currentAccount; 
 currentAccount = teri;
 updateUI(currentAccount);
 displayContainerApp.style.opacity = 0;
@@ -235,6 +228,7 @@ inputLoginBtn.addEventListener('click', function(event){
             greet = 'Good Afternoon';
             else if (hrs >= 17 && hrs <= 24)
             greet = 'Good Evening';
+
         //display ui and welcome message
         welcomeMessage.textContent = `${greet}, ${currentAccount.owner.charAt(0).toUpperCase()+ currentAccount.owner.slice(1).split(' ')[0]}.`;
         welcomeMessage.style.padding = "10px";
@@ -250,23 +244,19 @@ inputLoginBtn.addEventListener('click', function(event){
             inputLoginUsername.style.display = 'none';
             inputLoginPin.style.display = 'none';
             inputLogoutBtn.style.opacity = 100;
-            //alert('show')
         }
         updateUI(currentAccount);
     }
 });
+
 //LOGOUT BUTTON AS TOGGLE
 inputLogoutBtn.addEventListener('click', function(event){
     event.preventDefault();
-
     displayContainerApp.style.opacity = 0;
     inputLogoutBtn.style.display = 'none';
-    welcomeMessage.textContent = 'You have successfully logged out!'
-
-
+    welcomeMessage.textContent = 'You have successfully logged out!';
 })
-
-
+// =======================
 // transfering money logic
 // tracking income earned
 submitIncomeBtn.addEventListener('click', function(event){
@@ -294,16 +284,15 @@ submitIncomeBtn.addEventListener('click', function(event){
                     categoryType: 'income'
                 });
                 localStorage.setItem('formData', JSON.stringify(formData));
-                // dispData()
             } else {
                 alert('feild empty Select a date and enter a number greater than 0');
             }
     } 
-
     updateUI(currentAccount);
     formDeposits.reset();
 });
 
+// Updated transaction display of all deposits and withdrawals
 function dispData(){
     if(localStorage.getItem('formData')){
         containerMovements.innerHTML ="";
@@ -320,7 +309,6 @@ function dispData(){
             </tbody>
             `
         })
-        
     };
 }
 
@@ -330,12 +318,18 @@ submitExpenseBtn.addEventListener('click', function(event){
     const date = inputDateExpense.value;
     const amount = Number(inputAmountExpense.value);
     const categoryType = inputTypeExpense.value;
+    const trans = transactionIncome.innerHTML;
+    console.log(trans)
+    const myArray = trans.split(" ");
+    console.log(myArray)
+
 
     if(amount <= 0 || date === "" || categoryType === "" )
     {
         alert('Please ensure all inputs have been added');
-    } else {
-
+    }else if ( myArray[1] < amount){
+        alert('Input amount must be less than the income')
+    } else{
         let formData = JSON.parse(localStorage.getItem('formData')) || [];
         let exist = formData.length &&
                     JSON.parse(localStorage.getItem('formData')).some(data => {
