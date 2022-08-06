@@ -15,7 +15,7 @@ While learning <i>The Complete JavaScript Course 2022: From Zero to Expert</i>, 
 
 Phase 1: [ April 2022 - June 2022] :heavy_check_mark: <br>
 Phase 2: [ June 2022 ] :heavy_check_mark: <br>
-Phase 3: [July - August 2022 ] :heavy_check_mark: <br>
+Phase 3: [ July - August 2022 ] :heavy_check_mark: <br>
 Phase 4: August 2022 - in development
 
 The functionality consists of:
