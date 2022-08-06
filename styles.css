@@ -1,4 +1,7 @@
 /* Account Summary */
+.container {
+  background-image: url("./BudgetIllustration.jpg");
+}
 .main{
   opacity: 0;
 }
