@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  overflow: hidden;
+}
+
+.photo{
+  height:100vh;
+  object-fit: contain;
+}
+
+
+
