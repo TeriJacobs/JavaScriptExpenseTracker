@@ -16,7 +16,7 @@ return (
                         <form id="form-expenses" className="input-group input-group-sm">
                             <div className="form-row">
                                 <div className="mb-1">
-                                    <select className="form-control input-type-expense expense-income-border" required="true">
+                                    <select className="form-control input-type-expense expense-income-border">
                                             <option value="" disabled selected hidden>-Please Select-</option>
                                             <option>Food</option>
                                             <option>Petrol</option>
@@ -27,10 +27,10 @@ return (
                             </div>
                             <div className="form-row align-items-center input-group input-group-sm">
                                 <div className="col">
-                                        <input type="date" className=" form-control input-date-expense expense-income-border" placeholder="Date" required="true" />
+                                        <input type="date" className=" form-control input-date-expense expense-income-border" placeholder="Date" />
                                 </div>
                                 <div className="col mx-2">
-                                        <input type="amount" className=" form-control input-amount-expense expense-income-border" placeholder="R400" required="true" />
+                                        <input type="amount" className=" form-control input-amount-expense expense-income-border" placeholder="R400" />
                                 </div>
                                 <div className="col">
                                        <button type="button" className="btn btn-outline-dark submit-expense">Submit</button>

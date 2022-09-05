@@ -5,8 +5,11 @@ import IncomeForm from './IncomeForm';
 
 
 const CreateIncome = (props) => {
+    //const incomes = props.callIt;
+    // console.log(props, incomes)
     function onCreateIncome(income){
     props.createIncome(income)
+    // console.log('==================')
     }
 return (
     <>

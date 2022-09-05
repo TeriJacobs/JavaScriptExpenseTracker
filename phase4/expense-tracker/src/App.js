@@ -8,7 +8,7 @@ import CreateIncome from './components/Transactions/CreateIncome';
 import TableDisplay from './components/Transactions/TableDisplay';
 import Expense from './components/Transactions/Expense';
 import Summary from './components/Transactions/Summary';
-
+import IncomeForm from './components/Transactions/IncomeForm';
 
 const incomes = [
   {
@@ -17,14 +17,13 @@ const incomes = [
   },
   {
       date: '12/12/2022',
-      amount: 600
+      amount: 900
   }
 
 ]
 
 function App() {
 
-  const [data, setData] = useState('')
   const adminUser = {
     username: "admin",
     password: "123"
@@ -32,9 +31,8 @@ function App() {
 
   const [user, setUser] = useState({password: "", username:""});
   const [error, serError] = useState("");
-
-  //let[newIncome, updateIncome] = useState(null)
-  let[newIncomeList, updateIncomeList] = useState(incomes)
+ 
+  const [newProductList, updateProductList] = useState(incomes);
 
   const Login = details => {
       console.log(details)
@@ -56,11 +54,12 @@ function App() {
       setUser({ username: "", password:"" })
   }
 
-  function createIncome(income){
-    //console.log(income);
-    //updateIncome(income);
-    updateIncomeList([income, ...newIncomeList])
+  function onCreateProduct(income){
+   // console.log(income)
+   updateProductList([income, ...newProductList])
+   console.log(income.amount)
   }
+
   return (
   <>
     <div className="App">
@@ -74,16 +73,20 @@ function App() {
             </div>
             <div className="container">
               {/* <Summary newIncome={newIncome}/> */}
-              <Summary newIncomeList={newIncomeList}/>
-
-                <h4 createIncome={createIncome}>Income Summary: R </h4>
+              {/* <Summary newProduct={newProduct}/> */}
+              <Summary newProductList={newProductList}/>
+              <div className="row">
+                <div className="col">column 1</div>
+                <div className="col">column 2</div>
+                <div className="col">column 3</div>
+              </div>
               <div className="row justify-content-md-center">
                 <div className="col-lg-7 mb-4 mb-lg-0">
                   <TableDisplay />
                 </div>
                 <div className="col-lg-5 mb-4 mb-lg-0">
-                <CreateIncome createIncome={createIncome} />
-                  <Expense />
+                {/* <CreateIncome message={'5/5/2025'} /> */}
+                <IncomeForm createProduct={onCreateProduct}/>
                 </div>
               </div>
             </div>

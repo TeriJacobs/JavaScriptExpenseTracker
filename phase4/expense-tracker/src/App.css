@@ -2,10 +2,8 @@
   text-align: center;
   overflow: hidden;
 }
-
-.photo{
-  height:100vh;
-  object-fit: contain;
+.summary-column{
+  border: 1px solid black;
 }
 
 

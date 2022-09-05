@@ -1,36 +1,13 @@
 import React from 'react';
 import './transactions.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import CreateIncome from './CreateIncome';
-
-
-const incomes = [
-    {
-        date: '12/12/2022',
-        amount: 500
-    },
-    {
-        date: '12/12/2022',
-        amount: 900
-    }
-
-]
 
 const Summary = (props) => {
+    // let total = props.newProductList.map((item) => {
 
-    console.log(incomes)
-
-    let y = incomes.map(x => x.amount);
-    console.log(y)
-
-    const initialValue = 0;
-    const sumWithInitial = y.reduce(
-    (previousValue, currentValue) => previousValue + currentValue,
-    initialValue
-    );
-    console.log(sumWithInitial);
-    
-return (
+    // })
+  
+    return (
     <>
         <div className="container">
             <div className="row mt-5 justify-content-md-center">
@@ -41,12 +18,10 @@ return (
                             <div className="text">
                                 <span className="transaction-income transaction-summary-text"></span>
                                 <span className="text-muted text-uppercase small">Income</span>
-                                {incomes.map((incomeParam) => (
-                                    <div className="user">{incomeParam.amount}</div>
+                                {props.newProductList.map((incomeParam) => (
+                                    <div className="user" key={incomeParam?.id}>{incomeParam?.amount}</div>
                                 ))
                                 }
-                                <span>This is sum from hardcoded array{sumWithInitial}</span>
-                                <p>ji</p>
                             </div>  
                             <div className="col-auto ms-auto">
                             <div className="income-icon-background">
