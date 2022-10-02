@@ -1,0 +1,13 @@
+[
+    {
+      "id": "Math.random().toString()",
+      "date": "12-12-2020",
+      "amount": 100
+    },
+    {
+      "id": "Math.random().toString()",
+      "date": "12-12-2021",
+      "amount": 300
+    }
+  
+]

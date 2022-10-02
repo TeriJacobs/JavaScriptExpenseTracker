@@ -1,31 +1,29 @@
-import {useState, useEffect} from 'react'; // state provides 2 way data binding when working with forms, also allows clearing of form inputs
+import {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const IncomeForm = (props) => {
 
-    let [amount, updateAmount] = useState("");
-    let [date, updateDate] = useState("");
+    let [amount, setAmount] = useState("");
+    let [date, setDate] = useState("");
     
     function amountInputHandler(event){
-        updateAmount(event.target.value)
+        setAmount(event.target.value)
     }
     function dateInputHandler(event){
-        updateDate(event.target.value)
+        setDate(event.target.value)
     }
 
-    function createIncomeEventHandler(event){
+    function submitHandler(event){
         event.preventDefault();
-        let income = { // this object gets passed to the parent component 
+        const incomeData = { // this object gets passed to the parent component 
+            id: Math.random().toString(),
             date : date, // asigning single state variable property names
-            amount : amount
+            amount : parseInt(amount)
         }
-        updateAmount(income.amount); // persisting user inputs now
-        updateDate(income.date);
-        // console.log(income);
-        // const myUpdatedVehicle = {...income, date, amount};
-        // console.log(myUpdatedVehicle)
-        props.createProduct(income)
+        props.onSaveIncomeData(incomeData);
+        setAmount('')
+        setDate('')
     }
 
 return (
@@ -39,7 +37,7 @@ return (
                         <h2>{props.message}</h2>
                     </div>
                     <div className="row">
-                    <form onSubmit={createIncomeEventHandler}>
+                    <form onSubmit={submitHandler}>
                         <div className="form-row align-items-center input-group input-group-sm">
                                 <div className="col">
                                 <input 

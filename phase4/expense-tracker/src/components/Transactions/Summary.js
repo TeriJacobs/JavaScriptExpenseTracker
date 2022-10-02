@@ -17,11 +17,9 @@ const Summary = (props) => {
                             <div className="dot me-3 bg-indigo"></div>
                             <div className="text">
                                 <span className="transaction-income transaction-summary-text"></span>
-                                <span className="text-muted text-uppercase small">Income</span>
-                                {props.newProductList.map((incomeParam) => (
-                                    <div className="user" key={incomeParam?.id}>{incomeParam?.amount}</div>
-                                ))
-                                }
+                                <span className="text-muted text-uppercase small">Income: R
+                                {props.items.map((objDataList) => objDataList.amount).reduce((total, amount)=> total + amount)}
+                                </span>
                             </div>  
                             <div className="col-auto ms-auto">
                             <div className="income-icon-background">
