@@ -16,7 +16,7 @@ While learning <i>The Complete JavaScript Course 2022: From Zero to Expert</i>, 
 Phase 1: [ April 2022 - June 2022] :heavy_check_mark: <br>
 Phase 2: [ June 2022 ] :heavy_check_mark: <br>
 Phase 3: [ July - August 2022 ] :heavy_check_mark: <br>
-Phase 4: August 2022 - in development
+Phase 4: [ September - October 2022 ] :heavy_check_mark: <br> => https://github.com/TeriJacobs/react-expense-tracker
 
 The functionality consists of:
 
